@@ -1,66 +1,65 @@
 {
-  "resources": {
-    "head": [
-      {
-        "type": "script",
-        "src": "./app.js"
-      },
-      {
-        "type": "style",
-        "src": "./app.css"
-      }
-    ]
-  },
-  "preview": {
-    "handlers": [
-      {
-        "options": ["*"],
-        "execute": "EagerSourceWidget.setOptions(INSTALL_OPTIONS)"
-      }
-    ]
-  },
-  "options": {
-    "properties": {
-      "Globally": {
-        "order": 1,
-        "type": "boolean",
-        "title": "Globally",
-        "description": "Should the app work on all text copied?",
-        "default": false
-      },
-     "Locations": {
-        "title": "Locations",
-        "type": "array",
-        "maxItems": 3,
-        "order": 2,
-         "showIf": {
-      "Globally": false
-      },
-      "items": {
-            "properties": {
-        "location": {  
-        "title": "Location",
-        "description": "For which content areas would you like to apply the app?",
-        "order": 1,
-        "type": "object",
-        "format": "element",
-        "default": {
-          "selector": "body",
-          "method": "append"
-                   }
-        }
-             }
+    "resources": {
+        "head": [
+            {
+                "type": "script",
+                "src": "./app.js"
+            },
+            {
+                "type": "style",
+                "src": "./app.css"
+            }
+        ]
+    },
+    "preview": {
+        "handlers": [
+            {
+                "options": ["*"],
+                "execute": "INSTALL_SCOPE.setOptions(INSTALL_OPTIONS)"
+            }
+        ]
+    },
+    "options": {
+        "properties": {
+            "global": {
+                "order": 1,
+                "type": "boolean",
+                "title": "Install Globally",
+                "description": "Apply the app to text copied anywhere on the page",
+                "default": true
+            },
+            "locations": {
+                "title": "Locations",
+                "type": "array",
+                "maxItems": 3,
+                "order": 2,
+                "showIf": {
+                    "global": false
+                },
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "title": "Location",
+                            "description": "Select a region which the app should be applied to",
+                            "order": 1,
+                            "type": "object",
+                            "format": "element",
+                            "default": {
+                                "selector": "body",
+                                "method": "append"
+                            }
                         }
-      },
-     "Customize": {
-        "order": 3,
-        "type": "boolean",
-        "title": "Customize",
-        "description": "Want to choose what is shown below copied text?",
-        "default": false
-      }
-      
-      
+                    }
+                }
+            },
+            "customize": {
+                "order": 3,
+                "type": "boolean",
+                "title": "Customize Text",
+                "description": "Specify the text shown below the copied region",
+                "default": false
+            }
+        }
     }
-  }
 }
